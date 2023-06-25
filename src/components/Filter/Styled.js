@@ -1,5 +1,13 @@
 import styled from '@emotion/styled';
 
+export const MainContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 24px;
+`;
+
 export const ErrorMsg = styled.p`
   font-style: italic;
   color: red;

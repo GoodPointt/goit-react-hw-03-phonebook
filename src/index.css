@@ -15,7 +15,7 @@ code {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: Verdana, sans-serif;
   line-height: 1.5;
   background-color: #252525;
   color: #d4d4d4;
@@ -39,21 +39,6 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-}
-
-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.root__div {
-  /* height: 100vh; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-size: 24px;
 }
 
 form {

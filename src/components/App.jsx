@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Contacts } from './Contacts/Contacts';
 import { Filter } from './Filter/Filter';
+import { MainContainer } from './Filter/Styled';
 
 export class App extends Component {
   state = {
@@ -39,25 +40,53 @@ export class App extends Component {
     this.setState({ [name]: value });
   };
 
+  componentDidMount() {
+    const loadContacts = localStorage.getItem('contacts');
+    let parsedContacts = JSON.parse(loadContacts);
+    parsedContacts && this.setState({ contacts: parsedContacts });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   render() {
+    const { filter } = this.state;
+    const { contacts } = this.state;
+
+    const filteredContacts = contacts.filter(
+      contact =>
+        contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+        contact.number.includes(filter)
+    );
+
     return (
-      <div className="root__div">
+      <MainContainer>
         <h1>Phonebook</h1>
 
         <ContactForm addNewContact={this.addNewContact} />
 
         <h2>
-          You got {this.state.contacts.length} contact(s) in your phonebook
+          There
+          {contacts.length === 1 ? (
+            <span> is {contacts.length} contact </span>
+          ) : (
+            <span> are {contacts.length} contacts </span>
+          )}
+          in your phonebook
         </h2>
 
-        <Filter handleChange={this.handleChange} filter={this.state.filter} />
+        <Filter handleChange={this.handleChange} filter={filter} />
 
         <Contacts
-          contacts={this.state.contacts}
-          filter={this.state.filter}
+          contacts={contacts}
+          filteredContacts={filteredContacts}
+          filter={filter}
           deleteContact={this.deleteContact}
         />
-      </div>
+      </MainContainer>
     );
   }
 }

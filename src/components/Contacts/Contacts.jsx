@@ -5,12 +5,12 @@ import {
 } from 'components/Filter/Styled';
 import PropTypes from 'prop-types';
 
-export const Contacts = ({ contacts, filter, deleteContact }) => {
-  const filteredContacts = contacts.filter(
-    contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
-      contact.number.includes(filter)
-  );
+export const Contacts = ({
+  contacts,
+  filteredContacts,
+  filter,
+  deleteContact,
+}) => {
   return (
     <>
       {filter ? (
