@@ -46,7 +46,9 @@ export class App extends Component {
 
         <ContactForm addNewContact={this.addNewContact} />
 
-        <h2>Contacts:</h2>
+        <h2>
+          You got {this.state.contacts.length} contact(s) in your phonebook
+        </h2>
 
         <Filter handleChange={this.handleChange} filter={this.state.filter} />
 

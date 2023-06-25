@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
+import { StyledInput } from './Styled';
 
 export const Filter = ({ handleChange, filter }) => {
   return (
-    <input
+    <StyledInput
       onChange={handleChange}
       value={filter}
       type="text"

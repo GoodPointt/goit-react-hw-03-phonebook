@@ -1,34 +1,54 @@
+import {
+  StyledItem,
+  StyledItemBtn,
+  StyledList,
+} from 'components/Filter/Styled';
 import PropTypes from 'prop-types';
 
 export const Contacts = ({ contacts, filter, deleteContact }) => {
+  const filteredContacts = contacts.filter(
+    contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+      contact.number.includes(filter)
+  );
   return (
     <>
       {filter ? (
-        <ul>
-          {contacts
-            .filter(
-              contact =>
-                contact.name.toLowerCase().includes(filter.toLowerCase()) ||
-                contact.number.includes(filter)
-            )
-            .map(filteredContact => (
-              <li key={filteredContact.id}>
-                {filteredContact.name} {filteredContact.number}
-                <button onClick={() => deleteContact(filteredContact.id)}>
-                  X
-                </button>
-              </li>
-            ))}
-        </ul>
+        <>
+          <h4>Search result:</h4>
+          {filteredContacts.length ? (
+            <StyledList>
+              {filteredContacts.map(filteredContact => (
+                <StyledItem key={filteredContact.id}>
+                  {filteredContact.name} {filteredContact.number}
+                  <StyledItemBtn
+                    onClick={() => deleteContact(filteredContact.id)}
+                  >
+                    &#x2716;
+                  </StyledItemBtn>
+                </StyledItem>
+              ))}
+            </StyledList>
+          ) : (
+            <p>
+              Sorry, friend, but you have no contacts matching your search
+              querry 😒
+            </p>
+          )}
+        </>
       ) : (
-        <ul>
-          {contacts.map(contact => (
-            <li key={contact.id}>
-              {contact.name} {contact.number}
-              <button onClick={() => deleteContact(contact.id)}>X</button>
-            </li>
-          ))}
-        </ul>
+        <>
+          <StyledList>
+            {contacts.map(contact => (
+              <StyledItem key={contact.id}>
+                {contact.name} {contact.number}
+                <StyledItemBtn onClick={() => deleteContact(contact.id)}>
+                  &#x2716;
+                </StyledItemBtn>
+              </StyledItem>
+            ))}
+          </StyledList>
+        </>
       )}
     </>
   );

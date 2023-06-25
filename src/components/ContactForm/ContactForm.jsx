@@ -4,6 +4,8 @@ import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
 
+import { Btn, ErrorMsg, StyledInput } from 'components/Filter/Styled';
+
 export class ContactForm extends Component {
   state = {
     name: '',
@@ -85,7 +87,7 @@ export class ContactForm extends Component {
   render() {
     return (
       <form action="submit" onSubmit={this.handleSubmit}>
-        <input
+        <StyledInput
           onChange={this.handleChange}
           value={this.state.name}
           type="text"
@@ -96,9 +98,9 @@ export class ContactForm extends Component {
           d'Artagnan"
           required
         />
-        <p>{this.state.errors.name}</p>
+        <ErrorMsg>{this.state.errors.name}</ErrorMsg>
 
-        <input
+        <StyledInput
           onChange={this.handleChange}
           value={this.state.number}
           type="tel"
@@ -107,9 +109,9 @@ export class ContactForm extends Component {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
-        <p>{this.state.errors.number}</p>
+        <ErrorMsg>{this.state.errors.number}</ErrorMsg>
 
-        <button type="submit">Add contact</button>
+        <Btn type="submit">Add contact</Btn>
       </form>
     );
   }
