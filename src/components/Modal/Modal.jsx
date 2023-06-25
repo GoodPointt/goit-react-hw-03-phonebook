@@ -1,4 +1,4 @@
-import { ModalBackdrop, ModalContent } from 'components/Filter/Styled';
+import { ModalBackdrop, ModalContent } from 'components/Styled';
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
 

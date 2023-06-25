@@ -3,7 +3,7 @@ import {
   StyledItemBtn,
   StyledList,
   StyledText,
-} from 'components/Filter/Styled';
+} from 'components/Styled';
 import PropTypes from 'prop-types';
 
 export const Contacts = ({

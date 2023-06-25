@@ -4,7 +4,7 @@ import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
 
-import { Btn, ErrorMsg, StyledInput } from 'components/Filter/Styled';
+import { Btn, ErrorMsg, StyledInput } from 'components/Styled';
 
 export class ContactForm extends Component {
   state = {
@@ -48,6 +48,7 @@ export class ContactForm extends Component {
           errors: {},
         });
       })
+      .then(this.props.closeModal())
       .catch(validationErrors => {
         const errors = {};
         validationErrors.inner.forEach(error => {

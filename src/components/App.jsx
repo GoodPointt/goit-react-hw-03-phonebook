@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Contacts } from './Contacts/Contacts';
 import { Filter } from './Filter/Filter';
-import { Btn, MainContainer, StyledItemBtn } from './Filter/Styled';
+import { Btn, MainContainer, StyledItemBtn } from './Styled';
 import { Modal } from './Modal/Modal';
 
 export class App extends Component {
@@ -78,7 +78,7 @@ export class App extends Component {
           style={{
             display: 'block',
             margin: '0 auto',
-            fontSize: '20px',
+            fontSize: '32px',
           }}
         >
           Add new contact
@@ -93,7 +93,9 @@ export class App extends Component {
           in your phonebook
         </h2>
 
-        <Filter handleChange={this.handleChange} filter={filter} />
+        {contacts.length && (
+          <Filter handleChange={this.handleChange} filter={filter} />
+        )}
 
         <Contacts
           contacts={contacts}
@@ -107,7 +109,10 @@ export class App extends Component {
             <StyledItemBtn type="button" onClick={this.toggleModal}>
               X
             </StyledItemBtn>
-            <ContactForm addNewContact={this.addNewContact} />
+            <ContactForm
+              addNewContact={this.addNewContact}
+              closeModal={this.toggleModal}
+            />
           </Modal>
         )}
       </MainContainer>
