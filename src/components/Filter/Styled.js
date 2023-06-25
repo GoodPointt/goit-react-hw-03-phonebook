@@ -2,10 +2,9 @@ import styled from '@emotion/styled';
 
 export const MainContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
   flex-direction: column;
-  font-size: 24px;
+  gap: 30px;
 `;
 
 export const ErrorMsg = styled.p`
@@ -15,6 +14,8 @@ export const ErrorMsg = styled.p`
 `;
 
 export const StyledInput = styled.input`
+  display: block;
+  margin: 0 auto;
   font-size: 20px;
   background-color: #212121;
   color: #ffffff;
@@ -89,10 +90,13 @@ export const Btn = styled.button`
   }
 `;
 
-export const StyledItem = styled.li``;
+export const StyledItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+`;
 
 export const StyledItemBtn = styled(Btn)`
-  margin-left: 20px;
+  margin-left: 50px;
   width: 3em;
   height: 2em;
   &:hover,
@@ -102,14 +106,41 @@ export const StyledItemBtn = styled(Btn)`
     color: rgb(255, 0, 0);
   }
 `;
+export const StyledText = styled.p`
+  font-size: 25px;
+  color: #fff;
+`;
 
 export const StyledList = styled.ul`
   padding: 0;
   display: flex;
   gap: 15px;
-  align-items: center;
-  justify-content: center;
+
   flex-direction: column;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin: 20px auto;
+  width: fit-content;
+`;
+
+export const ModalBackdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+`;
+
+export const ModalContent = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 300px;
+  max-width: 600px;
+  width: 100%;
+  padding: 12px;
+  background-color: #000;
+  border-radius: 10px;
+  box-shadow: 0px 0px 29px #d4d4d4, 0px 0px 0px 0px #000,
+    0px 0px 0px 0px #252525;
 `;

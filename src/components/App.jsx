@@ -2,13 +2,27 @@ import { Component } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Contacts } from './Contacts/Contacts';
 import { Filter } from './Filter/Filter';
-import { MainContainer } from './Filter/Styled';
+import { Btn, MainContainer, StyledItemBtn } from './Filter/Styled';
+import { Modal } from './Modal/Modal';
 
 export class App extends Component {
   state = {
     contacts: [],
     filter: '',
+    showModal: false,
   };
+
+  componentDidMount() {
+    const loadContacts = localStorage.getItem('contacts');
+    let parsedContacts = JSON.parse(loadContacts);
+    parsedContacts && this.setState({ contacts: parsedContacts });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
 
   isExist = newContact => {
     return this.state.contacts.find(
@@ -40,21 +54,14 @@ export class App extends Component {
     this.setState({ [name]: value });
   };
 
-  componentDidMount() {
-    const loadContacts = localStorage.getItem('contacts');
-    let parsedContacts = JSON.parse(loadContacts);
-    parsedContacts && this.setState({ contacts: parsedContacts });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
+  };
 
   render() {
-    const { filter } = this.state;
-    const { contacts } = this.state;
+    const { filter, contacts, showModal } = this.state;
 
     const filteredContacts = contacts.filter(
       contact =>
@@ -65,9 +72,17 @@ export class App extends Component {
     return (
       <MainContainer>
         <h1>Phonebook</h1>
-
-        <ContactForm addNewContact={this.addNewContact} />
-
+        <Btn
+          type="button"
+          onClick={this.toggleModal}
+          style={{
+            display: 'block',
+            margin: '0 auto',
+            fontSize: '20px',
+          }}
+        >
+          Add new contact
+        </Btn>
         <h2>
           There
           {contacts.length === 1 ? (
@@ -86,6 +101,15 @@ export class App extends Component {
           filter={filter}
           deleteContact={this.deleteContact}
         />
+
+        {showModal && (
+          <Modal closeModal={this.toggleModal}>
+            <StyledItemBtn type="button" onClick={this.toggleModal}>
+              X
+            </StyledItemBtn>
+            <ContactForm addNewContact={this.addNewContact} />
+          </Modal>
+        )}
       </MainContainer>
     );
   }

@@ -2,6 +2,7 @@ import {
   StyledItem,
   StyledItemBtn,
   StyledList,
+  StyledText,
 } from 'components/Filter/Styled';
 import PropTypes from 'prop-types';
 
@@ -20,7 +21,9 @@ export const Contacts = ({
             <StyledList>
               {filteredContacts.map(filteredContact => (
                 <StyledItem key={filteredContact.id}>
-                  {filteredContact.name} {filteredContact.number}
+                  <StyledText>
+                    {filteredContact.name} {filteredContact.number}
+                  </StyledText>
                   <StyledItemBtn
                     onClick={() => deleteContact(filteredContact.id)}
                   >
@@ -30,10 +33,10 @@ export const Contacts = ({
               ))}
             </StyledList>
           ) : (
-            <p>
+            <StyledText>
               Sorry, friend, but you have no contacts matching your search
               querry 😒
-            </p>
+            </StyledText>
           )}
         </>
       ) : (
@@ -41,7 +44,9 @@ export const Contacts = ({
           <StyledList>
             {contacts.map(contact => (
               <StyledItem key={contact.id}>
-                {contact.name} {contact.number}
+                <StyledText>
+                  {contact.name} {contact.number}
+                </StyledText>
                 <StyledItemBtn onClick={() => deleteContact(contact.id)}>
                   &#x2716;
                 </StyledItemBtn>
