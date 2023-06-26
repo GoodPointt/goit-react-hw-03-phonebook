@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const MainContainer = styled.div`
+export const StyledContainer = styled.div`
   display: flex;
   margin: 0 auto;
   flex-direction: column;
@@ -36,7 +36,7 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const Btn = styled.button`
+export const StyledBtn = styled.button`
   cursor: pointer;
   width: 10em;
   position: relative;
@@ -95,7 +95,7 @@ export const StyledItem = styled.li`
   justify-content: space-between;
 `;
 
-export const StyledItemBtn = styled(Btn)`
+export const StyledItemBtn = styled(StyledBtn)`
   margin-left: 50px;
   width: 3em;
   height: 2em;

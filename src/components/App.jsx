@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Contacts } from './Contacts/Contacts';
 import { Filter } from './Filter/Filter';
-import { Btn, MainContainer, StyledItemBtn } from './Styled';
+import { StyledBtn, StyledContainer, StyledItemBtn } from './Styled';
 import { Modal } from './Modal/Modal';
 
 export class App extends Component {
@@ -70,9 +70,9 @@ export class App extends Component {
     );
 
     return (
-      <MainContainer>
+      <StyledContainer>
         <h1>Phonebook</h1>
-        <Btn
+        <StyledBtn
           type="button"
           onClick={this.toggleModal}
           style={{
@@ -82,7 +82,7 @@ export class App extends Component {
           }}
         >
           Add new contact
-        </Btn>
+        </StyledBtn>
         <h2>
           There
           {contacts.length === 1 ? (
@@ -93,7 +93,7 @@ export class App extends Component {
           in your phonebook
         </h2>
 
-        {contacts.length && (
+        {contacts.length > 0 && (
           <Filter handleChange={this.handleChange} filter={filter} />
         )}
 
@@ -115,7 +115,7 @@ export class App extends Component {
             />
           </Modal>
         )}
-      </MainContainer>
+      </StyledContainer>
     );
   }
 }

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { ModalBackdrop, ModalContent } from 'components/Styled';
 import { Component } from 'react';
 import { createPortal } from 'react-dom';
@@ -32,3 +34,7 @@ export class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+};
