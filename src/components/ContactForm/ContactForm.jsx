@@ -44,10 +44,21 @@ export const ContactForm = ({ addNewContact, closeModal }) => {
       onSubmit={handleSubmit}
     >
       <Form>
-        <Field type="text" name="name" as={StyledInput} />
+        <Field
+          type="text"
+          name="name"
+          as={StyledInput}
+          placeholder="Enter name..."
+          autofocus
+        />
         <ErrorMessage name="name" component={ErrorMsg} />
 
-        <Field type="tel" name="number" as={StyledInput} />
+        <Field
+          type="tel"
+          name="number"
+          as={StyledInput}
+          placeholder="Enter phone..."
+        />
         <ErrorMessage name="number" component={ErrorMsg} />
 
         <StyledBtn type="submit">Add contact</StyledBtn>
