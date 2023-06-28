@@ -49,7 +49,7 @@ export const ContactForm = ({ addNewContact, closeModal }) => {
           name="name"
           as={StyledInput}
           placeholder="Enter name..."
-          autofocus
+          autoFocus
         />
         <ErrorMessage name="name" component={ErrorMsg} />
 
